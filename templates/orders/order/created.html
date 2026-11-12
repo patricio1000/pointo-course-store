@@ -1,0 +1,5 @@
+{% extends 'base.html' %}
+{% block title %}Practice order {{ order.id }} confirmed · Pointo Store{% endblock %}
+{% block content %}
+<section class="confirmation"><span class="success-symbol" aria-hidden="true">✓</span><p class="eyebrow">PRACTICE ORDER #{{ order.id }}</p><h1>All set, {{ order.first_name }}.</h1><p>Your practice order was saved and your cart is now empty.<br>No payment was taken. Nothing will be shipped.</p><div class="receipt">{% for item in order.items.all %}<div><span>{{ item.quantity }} × {{ item.product_name }}</span><strong>${{ item.get_cost|floatformat:2 }}</strong></div>{% endfor %}<div class="summary-total"><span>Total</span><strong>${{ order.get_total_cost|floatformat:2 }} USD</strong></div></div><a class="button" href="{% url 'shop:product_list' %}">Back to the store</a></section>
+{% endblock %}

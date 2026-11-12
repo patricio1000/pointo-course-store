@@ -1,0 +1,2 @@
+{% load static %}
+{% if product.image %}<img src="{{ product.image.url }}" alt="{{ product.name }}" loading="lazy">{% elif product.category.kind == 'printer' %}<img src="{% static 'shop/printer.svg' %}" alt="Receipt printer illustration" loading="lazy">{% elif product.category.kind == 'paper' %}<img src="{% static 'shop/paper.svg' %}" alt="Paper roll illustration" loading="lazy">{% else %}<img src="{% static 'shop/stand.svg' %}" alt="Tablet stand illustration" loading="lazy">{% endif %}

@@ -1,0 +1,22 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Pointo Store{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'shop/store.css' %}">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="notice">CSC413 PRACTICE STORE <span>Simulated orders only. No payments or shipping.</span></div>
+<header class="site-header wrapper">
+  <a class="brand" href="{% url 'shop:product_list' %}"><span class="brand-mark">p.</span> Pointo<span class="brand-light">Store</span></a>
+  <nav aria-label="Main navigation"><a href="{% url 'shop:product_list' %}">Shop</a><a class="cart-link" href="{% url 'cart:cart_detail' %}">Cart <span class="badge">{{ cart|length }}</span></a></nav>
+</header>
+<main id="main" class="wrapper">
+  {% if messages %}<div class="messages" aria-live="polite">{% for message in messages %}<p class="message {{ message.tags }}">{{ message }}</p>{% endfor %}</div>{% endif %}
+  {% block content %}{% endblock %}
+</main>
+<footer class="wrapper"><span>Pointo Store · A small-business accessories project.</span><a href="{% url 'admin:index' %}">Store administration</a><span>Demo products & prices · USD</span></footer>
+</body>
+</html>

@@ -1,0 +1,6 @@
+{% extends 'base.html' %}
+{% block title %}{{ product.name }} · Pointo Store{% endblock %}
+{% block content %}
+<nav class="breadcrumbs" aria-label="Breadcrumb"><a href="{% url 'shop:product_list' %}">Shop</a><span>/</span><a href="{{ product.category.get_absolute_url }}">{{ product.category.name }}</a></nav>
+<section class="product-detail"><div class="detail-art art-{{ product.category.kind }}">{% include 'shop/product/image.html' %}</div><div class="detail-copy"><p class="eyebrow">{{ product.category.name }}</p><h1>{{ product.name }}</h1><p class="detail-price">${{ product.price|floatformat:2 }} <span>USD</span></p><div class="description">{{ product.description|linebreaks }}</div><dl class="specifications">{% for label, value in product.specifications %}<div><dt>{{ label }}</dt><dd>{{ value }}</dd></div>{% endfor %}</dl><form action="{% url 'cart:cart_add' product.id %}" method="post" class="add-form">{% csrf_token %}<div>{{ cart_product_form.quantity.label_tag }}{{ cart_product_form.quantity }}</div>{{ cart_product_form.override }}<button type="submit">Add to cart <span aria-hidden="true">↗</span></button></form><p class="small muted">Practice product. No real purchase will be made.</p></div></section>
+{% endblock %}
